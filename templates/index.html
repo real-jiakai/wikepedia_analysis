@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Category Word Cloud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- D3.js for word cloud -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- D3 cloud layout plugin -->
+    <script src="https://cdn.jsdelivr.net/gh/jasondavies/d3-cloud/build/d3.layout.cloud.js"></script>
+    <!-- jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Wikipedia Category Word Cloud</h1>
+            <p>Visualize word frequencies across Wikipedia categories</p>
+        </header>
+        
+        <div class="form-container">
+            <form id="category-form">
+                <div class="input-group">
+                    <input type="text" id="category-input" name="category" 
+                           placeholder="Enter a category (e.g., Large_language_models)" 
+                           aria-label="Wikipedia category name" required>
+                    <button type="submit" id="submit-btn">Generate</button>
+                </div>
+                <div class="dropdown" id="category-dropdown" style="display: none;">
+                    <ul id="cached-categories"></ul>
+                </div>
+            </form>
+            
+            <div class="cached-categories">
+                <h3>Previously analyzed categories:</h3>
+                <ul id="cached-list"></ul>
+            </div>
+        </div>
+        
+        <div class="status" id="status-message">Enter a Wikipedia category to get started</div>
+        
+        <div class="word-cloud-container">
+            <div id="word-cloud"></div>
+        </div>
+        
+        <div class="loading" id="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing data from Wikipedia...</p>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
